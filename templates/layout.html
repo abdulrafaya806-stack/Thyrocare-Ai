@@ -1,110 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThyroCare | Advanced Smart Screening Hub</title>
-
-    <!-- Favicon Icon (Aap apni image /static/ folder mein favicon.png ke naam se rakh dena) -->
     <link rel="icon" href="/static/favicon.png" type="image/png">
-
-    <!-- Premium Google Fonts: Poppins for Rich Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <!-- Bootstrap 5 & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* High Contrast Bright Premium Design */
+        /* Global Deep Dark Premium Theme */
         body {
-            background-color: #f1f5f9;
+            background-color: #0b1120 !important;
             font-family: 'Poppins', sans-serif;
-            color: #1e293b;
+            color: #f8fafc !important;
             overflow-x: hidden;
         }
 
         /* Smooth Crimson Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 10px; }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #dc2626;
-            border-radius: 10px;
-        }
-
-        /* Solid Crisp White Navbar with Deep Shadow */
+        /* Premium Glassmorphism Navbar */
         .custom-nav {
-            background: #ffffff !important;
-            border-bottom: 3px solid #dc2626;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            background: rgba(17, 24, 39, 0.95) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid #dc2626 !important;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6) !important;
         }
 
         .navbar-brand {
-            font-weight: 700;
-            color: #0f172a !important;
-            letter-spacing: 0.5px;
+            font-weight: 900 !important;
+            font-size: 1.6rem !important;
+            letter-spacing: 1px !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(220, 38, 38, 0.6) !important;
         }
-
-        .brand-accent {
-            color: #dc2626;
-        }
+        .brand-accent { color: #dc2626; }
 
         .nav-link {
-            font-weight: 600;
-            color: #475569 !important;
+            font-weight: 600 !important;
+            color: #d1d5db !important;
             font-size: 0.95rem;
             transition: all 0.2s ease;
         }
+        .nav-link:hover, .nav-link.active { color: #f87171 !important; }
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: #dc2626 !important;
-        }
-
-        /* Standard Sharp Card for Input Pages */
-        .premium-form-card {
-            background: #ffffff;
-            border: none;
+        /* Standard Sharp Dark Card for Global Pages */
+        .premium-form-card, .card {
+            background: rgba(15, 23, 42, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+            color: #ffffff;
         }
+        .form-control, .form-select {
+            background: rgba(30, 41, 59, 0.8) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            color: #fff !important;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #dc2626 !important;
+            box-shadow: 0 0 10px rgba(220,38,38,0.3) !important;
+        }
+        .form-label { color: #cbd5e1 !important; }
+        .text-dark, .text-muted, .text-secondary { color: #cbd5e1 !important; }
 
         footer {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.9);
             border-top: 4px solid #dc2626;
         }
+        
+        .btn-portal-primary {
+            background: #dc2626 !important; color: #ffffff !important; font-weight: 600; padding: 0.9rem 2.5rem; border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.5); border: none;
+        }
+        .btn-portal-primary:hover { background: #b91c1c !important; transform: translateY(-2px); }
     </style>
 </head>
-
 <body>
 
-    <!-- HIGH-CONTRAST CLEAN NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light custom-nav sticky-top py-3">
+    <!-- NAVBAR WITH AUTHENTICATION STATE -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav sticky-top py-3">
         <div class="container">
-            <a class="navbar-brand fs-4" href="/">
+            <a class="navbar-brand" href="/">
                 <i class="fa-solid fa-heart-pulse text-danger me-2"></i>THYROCARE<span class="brand-accent">.</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="navbar-nav ms-auto gap-2">
-                    <a class="nav-link px-3" href="/"><i class="fa-solid fa-house-medical me-1"></i> Home Overview</a>
-                    <a class="nav-link px-3" href="/risk"><i class="fa-solid fa-clipboard-check me-1"></i> Symptom
-                        Risk</a>
-                    <a class="nav-link px-3" href="/predict"><i class="fa-solid fa-microscope me-1"></i> AI
-                        Diagnostics</a>
-                    <a class="nav-link px-3" href="/history"><i class="fa-solid fa-clock-rotate-left me-1"></i> Registry
-                        Logs</a>
-                    <a class="nav-link px-3" href="/analytics"><i class="fa-solid fa-chart-bar me-1"></i>
-                        Performance</a>
+                <div class="navbar-nav ms-auto gap-2 align-items-center">
+                    <a class="nav-link px-3" href="/"><i class="fa-solid fa-house-medical me-1"></i> Home</a>
+                    <a class="nav-link px-3" href="/risk"><i class="fa-solid fa-clipboard-check me-1"></i> Symptom Risk</a>
+                    <a class="nav-link px-3" href="/predict"><i class="fa-solid fa-microscope me-1"></i> AI Diagnostics</a>
+                    <a class="nav-link px-3" href="/history"><i class="fa-solid fa-clock-rotate-left me-1"></i> Registry</a>
+                    <a class="nav-link px-3" href="/analytics"><i class="fa-solid fa-chart-bar me-1"></i> Performance</a>
+                    
+                    <div class="border-start border-secondary mx-2" style="height: 25px;"></div>
+                    
+                    {% if current_user.is_authenticated %}
+                        <span class="nav-link text-white fw-bold"><i class="fa-solid fa-user-circle text-danger me-1"></i> {{ current_user.name }}</span>
+                        <a class="btn btn-outline-danger btn-sm ms-2" style="border-radius: 8px;" href="/logout">Logout</a>
+                    {% else %}
+                        <a class="btn btn-danger btn-sm ms-2 fw-bold" style="border-radius: 8px;" href="/login"><i class="fa-solid fa-right-to-bracket me-1"></i> Login / Register</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -112,18 +115,28 @@
 
     <!-- MAIN TEMPLATE GATEWAY -->
     <div class="container my-5">
+        <!-- Flash Messages for Errors/Success -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 12px; background: rgba(15,23,42,0.9); border: 1px solid #dc2626; color: #fff;">
+                {{ message }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
         {% block content %}
         {% endblock %}
     </div>
 
     <!-- CLEAN HIGH-END FOOTER -->
     <footer class="text-white text-center py-4 mt-5">
-        <p class="mb-1 small tracking-wider text-uppercase text-light">ThyroCare Integrated Clinical Systems</p>
-        <p class="mb-0 text-white" style="font-size: 0.8rem;">&copy; 2026 Academic Research Project Collaboration. All
-            Rights Reserved.</p>
+        <p class="mb-1 small text-uppercase fw-bold text-light" style="letter-spacing: 2px;">ThyroCare Integrated Clinical Systems</p>
+        <p class="mb-0 text-secondary" style="font-size: 0.8rem;">&copy; 2026 Academic Research Project Collaboration. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

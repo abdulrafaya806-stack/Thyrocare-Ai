@@ -3,3 +3,6 @@ pdfplumber
 pytesseract
 Pillow
 werkzeug
+flask-login
+authlib
+python-dotenv

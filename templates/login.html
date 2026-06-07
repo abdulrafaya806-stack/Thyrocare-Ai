@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="col-md-5">
+        <div class="premium-form-card p-5">
+            <div class="text-center mb-4">
+                <i class="fa-solid fa-user-lock fa-3x text-danger mb-3"></i>
+                <h3 class="fw-bold text-white">Clinical Portal Login</h3>
+                <p class="text-secondary small">Access diagnostic tools and patient registries</p>
+            </div>
+            
+            <form method="POST" action="/login">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Email Address</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" name="email" class="form-control" required placeholder="dr.smith@clinic.com">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark border-secondary text-secondary"><i class="fa-solid fa-key"></i></span>
+                        <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-portal-primary w-100 mb-3">Sign In to Dashboard</button>
+            </form>
+            
+            <div class="d-flex align-items-center my-4">
+                <hr class="flex-grow-1 border-secondary">
+                <span class="mx-3 text-secondary small fw-bold">OR</span>
+                <hr class="flex-grow-1 border-secondary">
+            </div>
+            
+            <a href="/login/google" class="btn btn-outline-light w-100 d-flex align-items-center justify-content-center py-2" style="border-radius: 12px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="20" class="me-2">
+                Continue with Google
+            </a>
+            
+            <div class="text-center mt-4 pt-3 border-top border-secondary">
+                <span class="text-secondary">Don't have an account?</span> 
+                <a href="/register" class="text-danger fw-bold text-decoration-none ms-1">Register Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

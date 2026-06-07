@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="card p-4 shadow-sm" style="max-width: 800px; margin: 0 auto;">
-    <div class="border-bottom pb-3 mb-4">
-        <h2 class="fw-bold text-dark"><i class="fa-solid fa-calculator text-primary me-2"></i>Clinical Parameter Inputs</h2>
-        <p class="text-muted small">Input authentic laboratory assay quantities for diagnostic predictive mapping</p>
+    <div class="border-bottom border-secondary pb-3 mb-4">
+        <h2 class="fw-bold text-white"><i class="fa-solid fa-calculator text-danger me-2"></i>Clinical Parameter Inputs</h2>
+        <p class="text-secondary small">Input authentic laboratory assay quantities for diagnostic predictive mapping</p>
     </div>
 
     <!-- 📄 REPORT AUTO-FILL SECTION -->
     <div class="mb-5 p-4 rounded-4" style="background: rgba(220, 38, 38, 0.05); border: 1px dashed rgba(220, 38, 38, 0.4);">
-        <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-file-medical text-danger me-2"></i>Smart Report Scan (Auto-fill)</h5>
-        <p class="text-muted small mb-3">Upload your lab report (PDF, PNG, JPG) to automatically extract TSH, T3, and T4 values using OCR AI.</p>
+        <h5 class="fw-bold text-white mb-3"><i class="fa-solid fa-file-medical text-danger me-2"></i>Smart Report Scan (Auto-fill)</h5>
+        <p class="text-secondary small mb-3">Upload your lab report (PDF, PNG, JPG) to automatically extract TSH, T3, and T4 values using OCR AI.</p>
         
         <div class="input-group mb-2">
             <input type="file" class="form-control" id="reportFile" accept=".pdf,.png,.jpg,.jpeg">
@@ -20,7 +20,7 @@
         
         <!-- Loading & Status Messages -->
         <div id="scanStatus" class="small fw-bold mt-2 d-none">
-            <span class="text-primary"><i class="fa-solid fa-spinner fa-spin me-2"></i>Scanning report... Please wait.</span>
+            <span class="text-info"><i class="fa-solid fa-spinner fa-spin me-2"></i>Scanning report... Please wait.</span>
         </div>
         <div id="scanError" class="small fw-bold text-danger mt-2 d-none"></div>
         <div id="scanSuccess" class="small fw-bold text-success mt-2 d-none"></div>
@@ -37,7 +37,7 @@
             <div class="col-md-6"><label class="form-label fw-semibold">T4U Monitor Value</label><input type="text" name="t4u" class="form-control" required value="1.02"></div>
             <div class="col-md-6"><label class="form-label fw-semibold">FTI Index Value</label><input type="text" name="fti" class="form-control" required value="79"></div>
         </div>
-        <button type="submit" class="btn btn-dark btn-lg w-100 mt-4 fw-bold shadow-sm">Predict Disease Using Random Forest Model</button>
+        <button type="submit" class="btn btn-portal-primary w-100 mt-4 fw-bold shadow-sm">Predict Disease Using Random Forest Model</button>
     </form>
 </div>
 
