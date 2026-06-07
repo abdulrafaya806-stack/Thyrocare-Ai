@@ -14,10 +14,12 @@ from authlib.integrations.flask_client import OAuth
 
 load_dotenv()
 
-# Windows Tesseract Path Setup
-tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-if os.path.exists(tesseract_path):
-    pytesseract.pytesseract.tesseract_cmd = tesseract_path
+# --- OS-SAFE TESSERACT PATH SETUP ---
+# Agar local system Windows (nt) hai toh hi hardcoded path set karega, Vercel (Linux) par auto-detect karega
+if os.name == 'nt':
+    tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    if os.path.exists(tesseract_path):
+        pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'super_secret_default_key_thyrocare')
@@ -56,12 +58,13 @@ google = oauth.register(
     },
 )
 
-# System startup par database initialize karne ke liye
+# --- SAFE DATABASE INITIALIZATION ---
+# Vercel Serverless (Read-Only Environment) ke crashes ko bypass karne ke liye
 try:
     database.init_db()
     print("✅ SQLite Database Initialized Successfully!")
 except Exception as e:
-    print(f"⚠️ Database setup warning: {e}")
+    print(f"⚠️ Database setup warning (Ignored for Vercel compatibility): {e}")
 
 # 1. HOME ROUTE (Public)
 @app.route('/')
@@ -184,12 +187,12 @@ def predict():
             confidence = round(random.uniform(95.0, 99.2), 1)
             recommendation = "Thyroid evaluation registers normal activity thresholds. Maintain uniform nutritional lifestyle cycles."
 
-        # Database ke andar record logs save karna
+        # Database ke andar record logs save karna (Safe Exception Catching)
         try:
             database.insert_patient(age, gender, tsh, t3, tt4, t4u, fti, prediction, confidence)
             print("💾 Patient record successfully saved to SQLite!")
         except Exception as e:
-            print(f"❌ Database insert error: {e}")
+            print(f"❌ Database insert error (Ignored for read-only dynamic deployment): {e}")
         
         return render_template('result.html',
             prediction=prediction,
