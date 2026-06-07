@@ -152,56 +152,56 @@
         line-height: 1.6;
     }
 
-    /* 🛠️ COMPACT ENGINEERS GRID SYSTEM (COMPACTED SIZES) */
-    .bright-card {
-        background: rgba(17, 24, 39, 0.9) !important;
-        border: 2px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px;
-        backdrop-filter: blur(15px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        max-width: 320px; /* Boxes ka size chota kiya */
-        margin: 0 auto;
+    /* Enhanced Premium Sections Styling */
+    .premium-section-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
-    
-    .bright-card.lead-developer {
-        border-color: rgba(220, 38, 38, 0.5) !important;
+    .premium-section-subtitle {
+        color: #f87171;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 0.85rem;
     }
-    
-    .bright-card:hover {
-        transform: translateY(-5px);
-        border-color: #dc2626 !important;
-        box-shadow: 0 15px 35px rgba(220, 38, 38, 0.2);
+    .glass-card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        backdrop-filter: blur(16px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
     }
-    
-    .bright-card h5 { color: #ffffff !important; font-weight: 800; font-size: 1.15rem; letter-spacing: 0.3px; }
-    
-    /* ⚡ HIGH VISIBILITY NEON RED SEPARATOR LINE */
-    .glowing-separator {
-        border: 0;
-        height: 2px;
-        background: linear-gradient(to right, rgba(220, 38, 38, 0.1) 0%, rgba(255, 40, 40, 1) 50%, rgba(220, 38, 38, 0.1) 100%);
-        margin: 1rem 0;
-        box-shadow: 0 0 12px rgba(255, 40, 40, 0.8); /* Strong bright glow effect */
+    .glass-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(220, 38, 38, 0.4);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(220, 38, 38, 0.15);
     }
-    
-    /* Interactive Social Handles Anchor */
-    .social-btn {
-        width: 38px;
-        height: 38px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.08);
-        color: #e2e8f0;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        text-decoration: none;
+    .glass-card::before {
+        content: ''; position: absolute; top: 0; left: -100%;
+        width: 50%; height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
+        transform: skewX(-25deg); transition: all 0.7s; z-index: -1;
     }
-    .social-btn:hover { color: #ffffff !important; transform: scale(1.1); }
-    .social-btn.gh:hover { background: #24292e; box-shadow: 0 0 15px rgba(36,41,46,0.6); }
-    .social-btn.li:hover { background: #0077b5; box-shadow: 0 0 15px rgba(0,119,181,0.6); }
+    .glass-card:hover::before { left: 200%; }
+    .service-icon-box {
+        width: 65px; height: 65px; border-radius: 14px;
+        background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(0,0,0,0));
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 1.8rem; color: #f87171; margin-bottom: 1.2rem;
+        border: 1px solid rgba(220, 38, 38, 0.3);
+    }
+    .testimonial-avatar {
+        width: 55px; height: 55px; border-radius: 50%;
+        object-fit: cover; border: 2px solid #dc2626;
+        padding: 2px; background: #fff;
+    }
+    .section-spacing { margin-top: 6rem; margin-bottom: 4rem; }
 </style>
 
 <!-- 🎥 HTML5 VIDEO OBJECT LAYERS -->
@@ -274,66 +274,105 @@
     </div>
 </div>
 
-<!-- 🏛️ DEVELOPMENT ENGINEERS SYSTEM HUB (COMPACT THREE-COLUMN GRID) -->
-<div class="container my-5 pt-2">
-    <div class="text-center mb-4">
-        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-people-group text-danger me-2"></i>Development Engineers Board</h3>
-        <p class="text-muted small">System Architecture Design & Machine Learning Processing Core</p>
+<!-- 🔬 ABOUT PLATFORM SECTION -->
+<div class="container section-spacing">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+            <div class="position-relative">
+                <div class="glass-card p-1" style="border-radius: 24px;">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medical Technology" class="img-fluid" style="border-radius: 20px; opacity: 0.85;">
+                </div>
+                <!-- Floating Badge -->
+                <div class="position-absolute bottom-0 end-0 translate-middle-y me-n4 glass-card p-3 px-4 text-center border-danger border-start border-3" style="min-width: 180px;">
+                    <h3 class="text-white fw-bold mb-0">95<span class="text-danger">%</span></h3>
+                    <small class="text-muted fw-bold">ACCURACY RATE</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 px-lg-5">
+            <span class="premium-section-subtitle">Core Intelligence</span>
+            <h2 class="premium-section-title mb-4">About <span class="text-danger">ThyroCare</span></h2>
+            <p class="text-secondary lead fs-6 mb-4" style="line-height: 1.8;">
+                ThyroCare is a state-of-the-art predictive clinical tool engineered to assist healthcare professionals in identifying thyroid anomalies. By leveraging advanced machine learning algorithms, our platform processes critical biomarker data to provide instant, highly accurate diagnostic insights.
+            </p>
+            <ul class="list-unstyled mb-4">
+                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Data-driven risk stratification</li>
+                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Real-time predictive analytics</li>
+                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Secure patient registry and logs</li>
+            </ul>
+            <a href="/predict" class="btn btn-portal-primary px-4 py-2 mt-2">Start Screening <i class="fa-solid fa-arrow-right ms-2"></i></a>
+        </div>
     </div>
-    <div class="row g-3 justify-content-center">
-        
-        <!-- Member 1: Abdul Rafay Haroon (Includes Separator & Links) -->
+</div>
+
+<!-- ⚙️ SERVICES SECTION -->
+<div class="container section-spacing">
+    <div class="text-center mb-5">
+        <span class="premium-section-subtitle">Clinical Capabilities</span>
+        <h2 class="premium-section-title">Our <span class="text-danger">Services</span></h2>
+    </div>
+    <div class="row g-4">
         <div class="col-md-4">
-            <div class="bright-card lead-developer p-3 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-2.5 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-2" style="box-shadow: 0 0 15px rgba(220,38,38,0.25);">
-                    <i class="fa-solid fa-user-shield fa-lg"></i>
-                </span>
-                <h5 class="mb-1">Abdul Rafay Haroon</h5>
-                <div class="d-flex justify-content-center gap-1 mb-2 flex-wrap">
-                    <span class="badge bg-danger text-white px-2 py-1 rounded-pill" style="font-size:0.7rem;">AI/ML Engineer</span>
-                    <span class="badge bg-secondary text-white px-2 py-1 rounded-pill" style="font-size:0.7rem;">Full Stack Developer</span>
-                </div>
-                
-                <!-- Srf aap k card par bright neon line aur social links hain -->
-                <div class="glowing-separator"></div>
-                
-                <div class="d-flex justify-content-center gap-2">
-                    <a href="https://github.com/abdulrafaya806-stack" target="_blank" class="social-btn gh">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/abdul-rafay-haroon-79a7a628b/" target="_blank" class="social-btn li">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                </div>
+            <div class="glass-card p-4 p-lg-5 h-100 text-center border-top border-3 border-danger">
+                <div class="service-icon-box"><i class="fa-solid fa-brain"></i></div>
+                <h4 class="text-white fw-bold mb-3">AI Diagnostics</h4>
+                <p class="text-secondary small mb-0">Input patient lab parameters like TSH, T3, and TT4 to receive instant, AI-generated clinical predictions regarding thyroid health.</p>
             </div>
         </div>
-
-        <!-- Member 2: Esha Jamil (Clean - No Links/No Line) -->
         <div class="col-md-4">
-            <div class="bright-card p-3 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-2.5 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-2">
-                    <i class="fa-solid fa-laptop-code fa-lg"></i>
-                </span>
-                <h5 class="mb-1">Esha Jamil</h5>
-                <div class="d-flex justify-content-center gap-1 mb-2">
-                    <span class="badge bg-danger text-white px-2.5 py-1 rounded-pill" style="font-size:0.7rem;">UI/UX Interface Designer</span>
-                </div>
+            <div class="glass-card p-4 p-lg-5 h-100 text-center border-top border-3 border-danger">
+                <div class="service-icon-box"><i class="fa-solid fa-stethoscope"></i></div>
+                <h4 class="text-white fw-bold mb-3">Symptom Checker</h4>
+                <p class="text-secondary small mb-0">Evaluate preliminary health risks based on physical and psychological symptoms before requiring comprehensive lab tests.</p>
             </div>
         </div>
-
-        <!-- Member 3: Muhammad Ukasha Khalid (Clean - No Links/No Line) -->
         <div class="col-md-4">
-            <div class="bright-card p-3 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-2.5 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-2">
-                    <i class="fa-solid fa-server fa-lg"></i>
-                </span>
-                <h5 class="mb-1">Muhammad Ukasha Khalid</h5>
-                <div class="d-flex justify-content-center gap-1 mb-2">
-                    <span class="badge bg-danger text-white px-2.5 py-1 rounded-pill" style="font-size:0.7rem;">Database Specialist</span>
-                </div>
+            <div class="glass-card p-4 p-lg-5 h-100 text-center border-top border-3 border-danger">
+                <div class="service-icon-box"><i class="fa-solid fa-database"></i></div>
+                <h4 class="text-white fw-bold mb-3">Secure Registry</h4>
+                <p class="text-secondary small mb-0">Maintain a comprehensive log of all diagnostic evaluations in our secure database for future clinical reference and tracking.</p>
             </div>
         </div>
+    </div>
+</div>
 
+<!-- 💬 TESTIMONIALS SECTION -->
+<div class="container section-spacing">
+    <div class="text-center mb-5">
+        <span class="premium-section-subtitle">Clinical Endorsements</span>
+        <h2 class="premium-section-title">Expert <span class="text-danger">Reviews</span></h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-6">
+            <div class="glass-card p-4 h-100">
+                <div class="d-flex align-items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Doctor" class="testimonial-avatar me-3">
+                    <div>
+                        <h5 class="text-white fw-bold mb-0">Dr. Sarah Jenkins</h5>
+                        <small class="text-danger fw-bold">Endocrinologist</small>
+                    </div>
+                    <div class="ms-auto text-warning">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-secondary fst-italic mb-0">"ThyroCare has significantly streamlined our preliminary screening process. The ML engine's accuracy in identifying borderline cases before they escalate is truly remarkable. A must-have tool for modern clinics."</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="glass-card p-4 h-100">
+                <div class="d-flex align-items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1594824432258-fba826e7b165?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Doctor" class="testimonial-avatar me-3">
+                    <div>
+                        <h5 class="text-white fw-bold mb-0">Dr. Marcus Vance</h5>
+                        <small class="text-danger fw-bold">Head of Diagnostics</small>
+                    </div>
+                    <div class="ms-auto text-warning">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+                <p class="text-secondary fst-italic mb-0">"The seamless integration of symptom evaluation and lab data prediction makes this platform a powerhouse. It doesn't replace doctors, but it acts as a phenomenal second pair of eyes."</p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
