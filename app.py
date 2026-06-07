@@ -49,13 +49,11 @@ google = oauth.register(
     name='google',
     client_id=os.getenv('GOOGLE_CLIENT_ID', 'placeholder_id'),
     client_secret=os.getenv('GOOGLE_CLIENT_SECRET', 'placeholder_secret'),
-    access_token_url='https://accounts.google.com/o/oauth2/token',
-    access_token_params=None,
-    authorize_url='https://accounts.google.com/o/oauth2/auth',
-    authorize_params=None,
-    api_base_url='https://www.googleapis.com/oauth2/v1/',
-    client_kwargs={'scope': 'openid email profile'},
-    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration'
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={
+        'scope': 'openid email profile',
+        'token_endpoint_auth_method': 'client_secret_post',
+    },
 )
 
 # System startup par database initialize karne ke liye
@@ -124,8 +122,10 @@ def login_google():
 @app.route('/authorize/google')
 def authorize_google():
     token = google.authorize_access_token()
-    resp = google.get('userinfo')
-    user_info = resp.json()
+    user_info = token.get('userinfo')
+    if not user_info:
+        resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
+        user_info = resp.json()
     
     email = user_info['email']
     name = user_info.get('name', email.split('@')[0])
@@ -191,7 +191,13 @@ def predict():
         except Exception as e:
             print(f"❌ Database insert error: {e}")
         
-        return render_template('result.html', prediction=prediction, confidence=confidence, recommendation=recommendation)
+        return render_template('result.html',
+            prediction=prediction,
+            confidence=confidence,
+            recommendation=recommendation,
+            age=age, gender=gender,
+            tsh=tsh, t3=t3, tt4=tt4, t4u=t4u, fti=fti
+        )
         
     return render_template('predict.html')
 

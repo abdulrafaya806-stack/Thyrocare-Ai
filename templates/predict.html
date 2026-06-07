@@ -1,112 +1,241 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="card p-4 shadow-sm" style="max-width: 800px; margin: 0 auto;">
+<div class="card p-4 shadow-sm" style="max-width: 820px; margin: 0 auto;">
     <div class="border-bottom border-secondary pb-3 mb-4">
-        <h2 class="fw-bold text-white"><i class="fa-solid fa-calculator text-danger me-2"></i>Clinical Parameter Inputs</h2>
-        <p class="text-secondary small">Input authentic laboratory assay quantities for diagnostic predictive mapping</p>
+        <h2 class="fw-bold text-white"><i class="fa-solid fa-calculator text-danger me-2"></i>AI Thyroid Diagnosis</h2>
+        <p class="text-secondary small">Upload your lab report OR manually enter values to get your thyroid diagnosis</p>
     </div>
 
-    <!-- 📄 REPORT AUTO-FILL SECTION -->
-    <div class="mb-5 p-4 rounded-4" style="background: rgba(220, 38, 38, 0.05); border: 1px dashed rgba(220, 38, 38, 0.4);">
-        <h5 class="fw-bold text-white mb-3"><i class="fa-solid fa-file-medical text-danger me-2"></i>Smart Report Scan (Auto-fill)</h5>
-        <p class="text-secondary small mb-3">Upload your lab report (PDF, PNG, JPG) to automatically extract TSH, T3, and T4 values using OCR AI.</p>
-        
+    <!-- ===================== STEP 1: UPLOAD SECTION ===================== -->
+    <div class="mb-4 p-4 rounded-4" style="background: rgba(220, 38, 38, 0.05); border: 1px dashed rgba(220, 38, 38, 0.4);">
+        <h5 class="fw-bold text-white mb-1">
+            <span class="badge bg-danger me-2">STEP 1</span>
+            <i class="fa-solid fa-file-medical text-danger me-2"></i>Upload Lab Report (PDF / Image)
+        </h5>
+        <p class="text-secondary small mb-3">AI will scan your report and extract TSH, T3, T4 values automatically.</p>
+
         <div class="input-group mb-2">
-            <input type="file" class="form-control" id="reportFile" accept=".pdf,.png,.jpg,.jpeg">
+            <input type="file" class="form-control bg-dark text-white border-secondary" id="reportFile" accept=".pdf,.png,.jpg,.jpeg">
             <button class="btn btn-danger px-4 fw-bold" type="button" id="scanBtn" onclick="scanReport()">
-                <i class="fa-solid fa-expand me-2"></i>Scan & Auto-Fill
+                <i class="fa-solid fa-magnifying-glass me-2"></i>Scan Report
             </button>
         </div>
-        
-        <!-- Loading & Status Messages -->
+
+        <!-- Loading -->
         <div id="scanStatus" class="small fw-bold mt-2 d-none">
             <span class="text-info"><i class="fa-solid fa-spinner fa-spin me-2"></i>Scanning report... Please wait.</span>
         </div>
+        <!-- Error -->
         <div id="scanError" class="small fw-bold text-danger mt-2 d-none"></div>
-        <div id="scanSuccess" class="small fw-bold text-success mt-2 d-none"></div>
     </div>
 
-    <!-- STANDARD INPUT FORM -->
+    <!-- ===================== STEP 2: EXTRACTED VALUES CARD (hidden until scan) ===================== -->
+    <div id="extractedCard" class="d-none mb-4 p-4 rounded-4" style="background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.35);">
+        <h5 class="fw-bold text-white mb-3">
+            <span class="badge bg-success me-2">STEP 2</span>
+            <i class="fa-solid fa-vial-circle-check text-success me-2"></i>Extracted Lab Values
+        </h5>
+        <p class="text-secondary small mb-3">Values extracted from your report. Verify or edit if needed.</p>
+
+        <div class="row g-3" id="extractedValues">
+            <!-- filled dynamically -->
+        </div>
+
+        <!-- Age & Gender row -->
+        <div class="row g-3 mt-1">
+            <div class="col-md-6">
+                <label class="form-label fw-semibold text-white-50 small">Patient Age</label>
+                <input type="number" id="val_age" class="form-control bg-dark text-white border-secondary" min="1" max="120" value="45">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold text-white-50 small">Gender</label>
+                <select id="val_gender" class="form-select bg-dark text-white border-secondary">
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Generate Button -->
+        <div class="mt-4">
+            <button class="btn btn-success w-100 fw-bold py-3 fs-5 shadow" onclick="generateResult()">
+                <i class="fa-solid fa-brain me-2"></i>Generate Diagnosis Result
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================== DIVIDER ===================== -->
+    <div class="d-flex align-items-center my-3">
+        <hr class="flex-grow-1 border-secondary">
+        <span class="mx-3 text-secondary small fw-bold">OR ENTER MANUALLY</span>
+        <hr class="flex-grow-1 border-secondary">
+    </div>
+
+    <!-- ===================== MANUAL FORM ===================== -->
     <form method="POST" action="/predict">
         <div class="row g-3">
-            <div class="col-md-6"><label class="form-label fw-semibold">Patient Age</label><input type="number" name="age" class="form-control" required min="1" max="120" value="45"></div>
-            <div class="col-md-6"><label class="form-label fw-semibold">Gender Identity</label><select name="gender" class="form-select" required><option value="F">Female</option><option value="M">Male</option></select></div>
-            <div class="col-md-4"><label class="form-label fw-semibold">TSH Level (µIU/mL)</label><input type="text" name="tsh" class="form-control" required value="4.8"></div>
-            <div class="col-md-4"><label class="form-label fw-semibold">T3 Level (nmol/L)</label><input type="text" name="t3" class="form-control" required value="1.2"></div>
-            <div class="col-md-4"><label class="form-label fw-semibold">TT4 Level (nmol/L)</label><input type="text" name="tt4" class="form-control" required value="81"></div>
-            <div class="col-md-6"><label class="form-label fw-semibold">T4U Monitor Value</label><input type="text" name="t4u" class="form-control" required value="1.02"></div>
-            <div class="col-md-6"><label class="form-label fw-semibold">FTI Index Value</label><input type="text" name="fti" class="form-control" required value="79"></div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Patient Age</label>
+                <input type="number" name="age" class="form-control" required min="1" max="120" value="45">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Gender</label>
+                <select name="gender" class="form-select" required>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">TSH Level (µIU/mL)</label>
+                <input type="text" name="tsh" id="form_tsh" class="form-control" required value="4.8">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">T3 Level (nmol/L)</label>
+                <input type="text" name="t3" id="form_t3" class="form-control" required value="1.2">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">TT4 Level (nmol/L)</label>
+                <input type="text" name="tt4" id="form_tt4" class="form-control" required value="81">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">T4U Value</label>
+                <input type="text" name="t4u" id="form_t4u" class="form-control" required value="1.02">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">FTI Index</label>
+                <input type="text" name="fti" id="form_fti" class="form-control" required value="79">
+            </div>
         </div>
-        <button type="submit" class="btn btn-portal-primary w-100 mt-4 fw-bold shadow-sm">Predict Disease Using Random Forest Model</button>
+        <button type="submit" class="btn btn-danger w-100 mt-4 fw-bold py-2 shadow-sm">
+            <i class="fa-solid fa-stethoscope me-2"></i>Predict via Manual Input
+        </button>
     </form>
 </div>
 
-<!-- SCRIPTS FOR OCR AUTO-FILL -->
+<!-- Hidden form to POST extracted values -->
+<form id="autoForm" method="POST" action="/predict" style="display:none;">
+    <input type="hidden" name="age"    id="h_age">
+    <input type="hidden" name="gender" id="h_gender">
+    <input type="hidden" name="tsh"    id="h_tsh">
+    <input type="hidden" name="t3"     id="h_t3">
+    <input type="hidden" name="tt4"    id="h_tt4">
+    <input type="hidden" name="t4u"    id="h_t4u">
+    <input type="hidden" name="fti"    id="h_fti">
+</form>
+
 <script>
+const LABELS = {
+    tsh:  { label: 'TSH Level', unit: 'µIU/mL', normal: '0.4 – 4.5' },
+    t3:   { label: 'T3 Level',  unit: 'nmol/L',  normal: '1.2 – 2.8' },
+    tt4:  { label: 'TT4 Level', unit: 'nmol/L',  normal: '60 – 150'  },
+    t4u:  { label: 'T4U Value', unit: '',         normal: '0.8 – 1.2' },
+    fti:  { label: 'FTI Index', unit: '',         normal: '60 – 120'  }
+};
+
 async function scanReport() {
-    const fileInput = document.getElementById('reportFile');
+    const fileInput  = document.getElementById('reportFile');
     const scanStatus = document.getElementById('scanStatus');
-    const scanError = document.getElementById('scanError');
-    const scanSuccess = document.getElementById('scanSuccess');
-    const scanBtn = document.getElementById('scanBtn');
-    
+    const scanError  = document.getElementById('scanError');
+    const scanBtn    = document.getElementById('scanBtn');
+
     scanError.classList.add('d-none');
-    scanSuccess.classList.add('d-none');
-    
+    document.getElementById('extractedCard').classList.add('d-none');
+
     if (!fileInput.files.length) {
-        scanError.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Please select a file first.";
+        scanError.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Pehle file select karein.";
         scanError.classList.remove('d-none');
         return;
     }
-    
+
     scanStatus.classList.remove('d-none');
     scanBtn.disabled = true;
-    
+    scanBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Scanning...';
+
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
-    
+
     try {
-        const response = await fetch('/extract_report', {
-            method: 'POST',
-            body: formData
-        });
-        
-        const result = await response.json();
+        const response = await fetch('/extract_report', { method: 'POST', body: formData });
+        const result   = await response.json();
+
         scanStatus.classList.add('d-none');
         scanBtn.disabled = false;
-        
+        scanBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-2"></i>Scan Report';
+
         if (result.success) {
             const data = result.data;
             let fieldsFilled = 0;
-            
-            if (data.tsh !== "") { document.querySelector('input[name="tsh"]').value = data.tsh; fieldsFilled++; }
-            if (data.t3 !== "") { document.querySelector('input[name="t3"]').value = data.t3; fieldsFilled++; }
-            if (data.tt4 !== "") { document.querySelector('input[name="tt4"]').value = data.tt4; fieldsFilled++; }
-            if (data.t4u !== "") { document.querySelector('input[name="t4u"]').value = data.t4u; fieldsFilled++; }
-            if (data.fti !== "") { document.querySelector('input[name="fti"]').value = data.fti; fieldsFilled++; }
-            
+            let html = '';
+
+            // Build value cards
+            for (const [key, meta] of Object.entries(LABELS)) {
+                const val = data[key];
+                const hasVal = val !== "" && val !== null && val !== undefined;
+                if (hasVal) fieldsFilled++;
+
+                const badgeClass = hasVal ? 'bg-success' : 'bg-secondary';
+                const displayVal = hasVal ? val + (meta.unit ? ' ' + meta.unit : '') : 'Not found';
+
+                html += `
+                <div class="col-md-4">
+                    <div class="p-3 rounded-3" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="text-white-50 small fw-semibold">${meta.label}</span>
+                            <span class="badge ${badgeClass} small">${hasVal ? 'Found' : 'Missing'}</span>
+                        </div>
+                        <div class="fs-5 fw-bold text-white">${displayVal}</div>
+                        <div class="text-secondary" style="font-size:11px;">Normal: ${meta.normal}</div>
+                        <input type="hidden" id="val_${key}" value="${hasVal ? val : ''}">
+                    </div>
+                </div>`;
+
+                // also fill manual form fields
+                if (hasVal) {
+                    const el = document.getElementById('form_' + key);
+                    if (el) el.value = val;
+                }
+            }
+
+            document.getElementById('extractedValues').innerHTML = html;
+
             if (fieldsFilled > 0) {
-                scanSuccess.innerHTML = `<i class="fa-solid fa-check-circle me-1"></i> Successfully extracted ${fieldsFilled} parameters. Please verify them.`;
-                scanSuccess.classList.remove('d-none');
+                document.getElementById('extractedCard').classList.remove('d-none');
+                // Smooth scroll to extracted card
+                document.getElementById('extractedCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
-                scanError.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> No clinical values could be clearly read from this file.";
+                scanError.innerHTML = "⚠️ Report se koi value nahi mili. Please manually values enter karein neeche.";
                 scanError.classList.remove('d-none');
             }
+
         } else {
-            // Tesseract error specifically for Windows users
             if (result.error && result.error.includes("tesseract is not installed")) {
-                scanError.innerHTML = "❌ <b>Tesseract-OCR is missing!</b> Since you uploaded an Image, Windows needs Tesseract installed to read text. Please install Tesseract or upload a PDF instead.";
+                scanError.innerHTML = "❌ <b>Tesseract-OCR missing!</b> Image scan ke liye Tesseract install karein ya PDF upload karein.";
             } else {
-                scanError.innerHTML = "❌ " + (result.error || "Failed to process document.");
+                scanError.innerHTML = "❌ " + (result.error || "Document process nahi ho saka.");
             }
             scanError.classList.remove('d-none');
         }
+
     } catch (err) {
         scanStatus.classList.add('d-none');
         scanBtn.disabled = false;
-        scanError.innerHTML = "❌ Server connection error while extracting data.";
+        scanBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass me-2"></i>Scan Report';
+        scanError.innerHTML = "❌ Server se connection error. Please retry karein.";
         scanError.classList.remove('d-none');
     }
+}
+
+function generateResult() {
+    // Read values from extracted card inputs
+    document.getElementById('h_age').value    = document.getElementById('val_age').value    || 45;
+    document.getElementById('h_gender').value = document.getElementById('val_gender').value || 'F';
+    document.getElementById('h_tsh').value    = document.getElementById('val_tsh').value    || document.getElementById('form_tsh').value;
+    document.getElementById('h_t3').value     = document.getElementById('val_t3').value     || document.getElementById('form_t3').value;
+    document.getElementById('h_tt4').value    = document.getElementById('val_tt4').value    || document.getElementById('form_tt4').value;
+    document.getElementById('h_t4u').value    = document.getElementById('val_t4u').value    || document.getElementById('form_t4u').value;
+    document.getElementById('h_fti').value    = document.getElementById('val_fti').value    || document.getElementById('form_fti').value;
+
+    document.getElementById('autoForm').submit();
 }
 </script>
 {% endblock %}
