@@ -6,3 +6,5 @@ werkzeug
 flask-login
 authlib
 python-dotenv
+requests
+blinker
