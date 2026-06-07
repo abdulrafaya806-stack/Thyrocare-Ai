@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card p-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3 flex-wrap gap-2">
+        <div>
+            <h2 class="fw-bold text-dark"><i class="fa-solid fa-database text-secondary me-2"></i>Patient Screening History</h2>
+            <p class="text-muted small mb-0">Persistent SQLite structured relational records registry logs</p>
+        </div>
+        <span class="badge bg-dark px-3 py-2 fs-6">SQLite Active Connect</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr><th>ID</th><th>Age</th><th>Gender</th><th>Calculated Diagnosis</th><th>Confidence</th><th>Timestamp</th></tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row[0] }}</td><td>{{ row[1] }}</td><td>{{ row[2] }}</td>
+                    <td><span class="badge {% if row[8]=='Hypothyroid' %}bg-danger{% elif row[8]=='Hyperthyroid' %}bg-warning text-dark{% else %}bg-success{% endif %}">{{ row[8] }}</span></td>
+                    <td><span class="text-success fw-bold">{{ row[9] }}%</span></td><td class="text-muted small">{{ row[10] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

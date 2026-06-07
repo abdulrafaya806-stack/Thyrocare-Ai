@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card p-4 max-w-lg mx-auto shadow-sm" style="max-width: 600px; margin: 0 auto;">
+    <div class="border-bottom pb-3 mb-4 text-center">
+        <h2 class="fw-bold text-primary"><i class="fa-solid fa-user-doctor me-2"></i>Symptom Risk Assessment</h2>
+        <p class="text-muted small">Select the persistent clinical symptoms you are experiencing</p>
+    </div>
+
+    <form method="POST" action="/risk">
+        <div class="row g-3">
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Fatigue" id="s1"><label class="form-check-label ms-4 fw-medium" for="s1">Fatigue</label></div></div>
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Weight Gain" id="s2"><label class="form-check-label ms-4 fw-medium" for="s2">Weight Gain</label></div></div>
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Weight Loss" id="s3"><label class="form-check-label ms-4 fw-medium" for="s3">Weight Loss</label></div></div>
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Hair Loss" id="s4"><label class="form-check-label ms-4 fw-medium" for="s4">Hair Loss</label></div></div>
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Anxiety" id="s5"><label class="form-check-label ms-4 fw-medium" for="s5">Anxiety</label></div></div>
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Cold Intolerance" id="s6"><label class="form-check-label ms-4 fw-medium" for="s6">Cold Intolerance</label></div></div>
+            <div class="col-sm-6"><div class="form-check card p-2 bg-light"><input class="form-check-input ms-1" type="checkbox" name="symptoms" value="Heat Intolerance" id="s7"><label class="form-check-label ms-4 fw-medium" for="s7">Heat Intolerance</label></div></div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 btn-lg mt-4 shadow-sm fw-bold">Evaluate Preliminary Risk</button>
+    </form>
+
+    {% if risk %}
+    <div class="mt-4 p-3 border rounded text-center bg-white">
+        <h4 class="fw-bold mb-2">Calculated Risk Factor: 
+            {% if risk == 'Low Risk' %}<span class="badge bg-success fs-5">Low Risk</span>
+            {% elif risk == 'Medium Risk' %}<span class="badge bg-warning text-dark fs-5">Medium Risk</span>
+            {% else %}<span class="badge bg-danger fs-5">High Risk</span>{% endif %}
+        </h4>
+        <div class="alert alert-warning border-start border-4 mt-3 mb-0 text-start" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i><strong>Notice:</strong> This is only a preliminary risk assessment. Laboratory tests are recommended for confirmation.
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

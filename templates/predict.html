@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card p-4 shadow-sm" style="max-width: 800px; margin: 0 auto;">
+    <div class="border-bottom pb-3 mb-4">
+        <h2 class="fw-bold text-dark"><i class="fa-solid fa-calculator text-primary me-2"></i>Clinical Parameter Inputs</h2>
+        <p class="text-muted small">Input authentic laboratory assay quantities for diagnostic predictive mapping</p>
+    </div>
+
+    <form method="POST" action="/predict">
+        <div class="row g-3">
+            <div class="col-md-6"><label class="form-label fw-semibold">Patient Age</label><input type="number" name="age" class="form-control" required min="1" max="120" value="45"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold">Gender Identity</label><select name="gender" class="form-select" required><option value="F">Female</option><option value="M">Male</option></select></div>
+            <div class="col-md-4"><label class="form-label fw-semibold">TSH Level (µIU/mL)</label><input type="text" name="tsh" class="form-control" required value="4.8"></div>
+            <div class="col-md-4"><label class="form-label fw-semibold">T3 Level (nmol/L)</label><input type="text" name="t3" class="form-control" required value="1.2"></div>
+            <div class="col-md-4"><label class="form-label fw-semibold">TT4 Level (nmol/L)</label><input type="text" name="tt4" class="form-control" required value="81"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold">T4U Monitor Value</label><input type="text" name="t4u" class="form-control" required value="1.02"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold">FTI Index Value</label><input type="text" name="fti" class="form-control" required value="79"></div>
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg w-100 mt-4 fw-bold shadow-sm">Predict Disease Using Random Forest Model</button>
+    </form>
+</div>
+{% endblock %}

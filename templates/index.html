@@ -1,0 +1,247 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    /* 🎥 VIDEO BACKGROUND INITIALIZATION */
+    .bg-video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -2;
+        overflow: hidden;
+    }
+
+    .bg-video-content {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 🌌 DYNAMIC OVERLAY: Center clear rakha hai taake video ka text/anatomy part sharp dikhe */
+    .video-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background: radial-gradient(circle at center, rgba(11, 17, 32, 0.3) 0%, rgba(11, 17, 32, 0.88) 85%);
+    }
+
+    /* Global Body Settings */
+    body {
+        color: #f8fafc !important;
+        background-color: #0b1120 !important; /* Fallback color */
+    }
+
+    /* 🏛️ PREMIUM NAVBAR HEADER */
+    header, .navbar, [style*="background-color"] {
+        background: rgba(17, 24, 39, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6) !important;
+        border-bottom: 3px solid #dc2626 !important;
+        padding: 0.8rem 1rem !important;
+    }
+    
+    .navbar-brand, .navbar-brand strong, [class*="brand"] {
+        font-weight: 900 !important;
+        font-size: 1.6rem !important;
+        letter-spacing: 1px !important;
+        text-transform: uppercase !important;
+        color: #ffffff !important;
+        text-shadow: 0 2px 4px rgba(220, 38, 38, 0.6) !important;
+    }
+
+    .nav-link { color: #d1d5db !important; font-weight: 600 !important; }
+    .nav-link:hover { color: #f87171 !important; }
+
+    /* 📺 Text Visibility & Shadow Enhancement */
+    .portal-main-hero {
+        padding: 7rem 1rem 4rem 1rem;
+    }
+    
+    .portal-tagline {
+        font-size: 1rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #ff8a8a;
+        font-weight: 800;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    }
+
+    .portal-heading {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        color: #ffffff;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.95), 0 0 40px rgba(0,0,0,0.7);
+    }
+
+    .portal-lead-text {
+        color: #e2e8f0 !important;
+        font-weight: 500;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.95);
+    }
+
+    .btn-portal-primary {
+        background: #dc2626; color: #ffffff; font-weight: 600; padding: 0.9rem 2.5rem; border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(220, 38, 38, 0.5); transition: all 0.2s ease; border: none;
+    }
+    .btn-portal-primary:hover { background: #b91c1c; color: #ffffff; transform: translateY(-2px); }
+
+    /* 👤 CASE STUDY PANEL */
+    .case-study-footer-card {
+        background: rgba(11, 17, 32, 0.88); 
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        margin-top: 3rem;
+    }
+
+    .case-study-img-wrapper {
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .case-study-thumb {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        object-position: top center;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .case-meta-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #f87171;
+        font-weight: 700;
+    }
+
+    .case-study-text {
+        color: #cbd5e1 !important;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Dev Board Styling */
+    .bright-card {
+        background: rgba(17, 24, 39, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px;
+        backdrop-filter: blur(12px);
+    }
+    .bright-card h5 { color: #ffffff !important; }
+</style>
+
+<!-- 🎥 HTML5 VIDEO OBJECT LAYERS -->
+<div class="bg-video-container">
+    <video class="bg-video-content" autoplay loop muted playsinline>
+        <source src="/static/anatomy.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div class="video-overlay"></div>
+
+<!-- 🏛️ MAIN HERO CORE -->
+<div class="portal-main-hero text-center">
+    <div class="container">
+        <div class="portal-tagline mb-3">
+            <i class="fa-solid fa-circle-radial text-danger me-2"></i>Smart Detection Platform
+        </div>
+        <h1 class="portal-heading mb-4 text-uppercase col-lg-10 mx-auto">
+            Thyroid Disease Predictive Engine
+        </h1>
+        <p class="lead portal-lead-text mb-5 col-lg-8 mx-auto">
+            An advanced machine learning framework specialized in screening clinical thyroid indicators, offering deployment-ready diagnostics with optimized node analysis algorithms.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="/predict" class="btn btn-portal-primary btn-lg"><i class="fa-solid fa-microscope me-2"></i>Execute Data Screening</a>
+            <a href="/risk" class="btn btn-outline-light btn-lg px-4" style="border-radius: 12px; border-color: rgba(255,255,255,0.35);">Symptom Evaluation</a>
+        </div>
+    </div>
+</div>
+
+<!-- 👤 PORTRAIT FRAME & CASE STUDY PANEL -->
+<div class="container my-5">
+    <div class="case-study-footer-card">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="case-study-img-wrapper">
+                    <img src="/static/maryum_transparent.png" onerror="this.onerror=null; this.src='https://placehold.co/400x500?text=Clinical+Profile';" alt="Maryam Nawaz Case Study Profile" class="case-study-thumb">
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 p-4 p-lg-5">
+                <div class="case-meta-title mb-1">Clinical Reference Verification</div>
+                <h3 class="text-white fw-bold mb-3">Patient Case Study: Active Node Abnormality</h3>
+                <p class="case-study-text mb-4">
+                    This reference case profile provides empirical clinical screening data tracking historical records from <strong class="text-white">2021 to January 2023</strong>. The evaluation marks a phase of Chronic Thyroid Abnormality (Nodular Growth) that successfully transitioned to post-surgical management following clinical termination via operative treatment in Geneva.
+                </p>
+                
+                <!-- Badge Details Row -->
+                <div class="row g-3">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="p-2 px-3 rounded-3" style="background: rgba(220, 38, 38, 0.25); border: 1px solid rgba(220, 38, 38, 0.4);">
+                            <small class="text-danger d-block fw-bold" style="font-size: 0.75rem;">DISEASE CLASSIFICATION</small>
+                            <span class="text-white small fw-bold">Thyroid Nodular Expansion</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="p-2 px-3 rounded-3" style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.4);">
+                            <small class="text-warning d-block fw-bold" style="font-size: 0.75rem;">SEVERITY LEVEL</small>
+                            <span class="text-warning small fw-bold">Acute High-Risk Stage</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="p-2 px-3 rounded-3" style="background: rgba(14, 165, 233, 0.25); border: 1px solid rgba(14, 165, 233, 0.4);">
+                            <small class="text-info d-block fw-bold" style="font-size: 0.75rem;">MANAGEMENT STATUS</small>
+                            <span class="text-info small fw-bold">Post-Surgical Control</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DEVELOPMENT ENGINEERS BOARD -->
+<div class="container my-5 pt-4">
+    <div class="text-center mb-4">
+        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-people-group text-danger me-2"></i>Development Engineers Board</h3>
+        <p class="text-muted small">System Architecture Design & Machine Learning Processing Core</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
+                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3"><i class="fa-solid fa-user-shield fa-2x"></i></span>
+                <h5 class="fw-bold mb-1">Abdul Rafay Haroon</h5>
+                <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">Lead ML Architect</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
+                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3"><i class="fa-solid fa-laptop-code fa-2x"></i></span>
+                <h5 class="fw-bold mb-1">Esha Jamil</h5>
+                <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">UI/UX Interface Designer</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
+                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3"><i class="fa-solid fa-server fa-2x"></i></span>
+                <h5 class="fw-bold mb-1">Muhammad Ukasha Khalid</h5>
+                <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">Full-Stack Database Specialist</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
