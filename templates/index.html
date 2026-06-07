@@ -152,49 +152,50 @@
         line-height: 1.6;
     }
 
-    /* 🛠️ PREMIUM ENGINEERS GRID BOARD SYSTEM */
+    /* 🛠️ COMPACT ENGINEERS GRID SYSTEM (COMPACTED SIZES) */
     .bright-card {
         background: rgba(17, 24, 39, 0.9) !important;
         border: 2px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 20px;
+        border-radius: 16px;
         backdrop-filter: blur(15px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.5);
         transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        max-width: 320px; /* Boxes ka size chota kiya */
+        margin: 0 auto;
     }
     
-    /* Center/Main Developer Distinctive Glowing State */
     .bright-card.lead-developer {
-        border-color: rgba(220, 38, 38, 0.4) !important;
+        border-color: rgba(220, 38, 38, 0.5) !important;
     }
     
     .bright-card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
         border-color: #dc2626 !important;
-        box-shadow: 0 20px 45px rgba(220, 38, 38, 0.15);
+        box-shadow: 0 15px 35px rgba(220, 38, 38, 0.2);
     }
     
-    .bright-card h5 { color: #ffffff !important; font-weight: 800; letter-spacing: 0.3px; }
+    .bright-card h5 { color: #ffffff !important; font-weight: 800; font-size: 1.15rem; letter-spacing: 0.3px; }
     
-    /* ⚡ THE GLOWING SEPARATOR LINE FIX */
+    /* ⚡ HIGH VISIBILITY NEON RED SEPARATOR LINE */
     .glowing-separator {
         border: 0;
-        height: 1px;
-        background: linear-gradient(to right, rgba(220, 38, 38, 0) 0%, rgba(220, 38, 38, 0.7) 50%, rgba(220, 38, 38, 0) 100%);
-        margin: 1.2rem 0;
-        box-shadow: 0 1px 8px rgba(220, 38, 38, 0.5);
+        height: 2px;
+        background: linear-gradient(to right, rgba(220, 38, 38, 0.1) 0%, rgba(255, 40, 40, 1) 50%, rgba(220, 38, 38, 0.1) 100%);
+        margin: 1rem 0;
+        box-shadow: 0 0 12px rgba(255, 40, 40, 0.8); /* Strong bright glow effect */
     }
     
     /* Interactive Social Handles Anchor */
     .social-btn {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.08);
         color: #e2e8f0;
-        font-size: 1.1rem;
+        font-size: 1rem;
         transition: all 0.3s ease;
         text-decoration: none;
     }
@@ -203,6 +204,7 @@
     .social-btn.li:hover { background: #0077b5; box-shadow: 0 0 15px rgba(0,119,181,0.6); }
 </style>
 
+<!-- 🎥 HTML5 VIDEO OBJECT LAYERS -->
 <div class="bg-video-container">
     <video class="bg-video-content" autoplay loop muted playsinline>
         <source src="/static/anatomy.mp4" type="video/mp4">
@@ -211,6 +213,7 @@
 </div>
 <div class="video-overlay"></div>
 
+<!-- 🏛️ MAIN HERO CORE -->
 <div class="portal-main-hero text-center">
     <div class="container">
         <div class="portal-tagline mb-3">
@@ -229,6 +232,7 @@
     </div>
 </div>
 
+<!-- 👤 PORTRAIT FRAME & CASE STUDY PANEL -->
 <div class="container my-5">
     <div class="case-study-footer-card">
         <div class="row g-0 align-items-center">
@@ -244,6 +248,7 @@
                     This reference case profile provides empirical clinical screening data tracking historical records from <strong class="text-white">2021 to January 2023</strong>. The evaluation marks a phase of Chronic Thyroid Abnormality (Nodular Growth) that successfully transitioned to post-surgical management following clinical termination via operative treatment in Geneva.
                 </p>
                 
+                <!-- Badge Details Row -->
                 <div class="row g-3">
                     <div class="col-sm-6 col-lg-4">
                         <div class="p-2 px-3 rounded-3" style="background: rgba(220, 38, 38, 0.25); border: 1px solid rgba(220, 38, 38, 0.4);">
@@ -269,24 +274,27 @@
     </div>
 </div>
 
-<div class="container my-5 pt-4">
-    <div class="text-center mb-5">
+<!-- 🏛️ DEVELOPMENT ENGINEERS SYSTEM HUB (COMPACT THREE-COLUMN GRID) -->
+<div class="container my-5 pt-2">
+    <div class="text-center mb-4">
         <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-people-group text-danger me-2"></i>Development Engineers Board</h3>
         <p class="text-muted small">System Architecture Design & Machine Learning Processing Core</p>
     </div>
-    <div class="row g-4 justify-content-center">
+    <div class="row g-3 justify-content-center">
         
-        <div class="col-md-6 col-lg-4">
-            <div class="bright-card lead-developer p-4 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3" style="box-shadow: 0 0 15px rgba(220,38,38,0.25);">
-                    <i class="fa-solid fa-user-shield fa-xl"></i>
+        <!-- Member 1: Abdul Rafay Haroon (Includes Separator & Links) -->
+        <div class="col-md-4">
+            <div class="bright-card lead-developer p-3 text-center h-100 border-bottom border-3 border-danger">
+                <span class="p-2.5 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-2" style="box-shadow: 0 0 15px rgba(220,38,38,0.25);">
+                    <i class="fa-solid fa-user-shield fa-lg"></i>
                 </span>
                 <h5 class="mb-1">Abdul Rafay Haroon</h5>
                 <div class="d-flex justify-content-center gap-1 mb-2 flex-wrap">
-                    <span class="badge bg-danger text-white px-2 py-1 rounded-pill style-badge" style="font-size:0.75rem;">AI/ML Engineer</span>
-                    <span class="badge bg-secondary text-white px-2 py-1 rounded-pill style-badge" style="font-size:0.75rem;">Full Stack Developer</span>
+                    <span class="badge bg-danger text-white px-2 py-1 rounded-pill" style="font-size:0.7rem;">AI/ML Engineer</span>
+                    <span class="badge bg-secondary text-white px-2 py-1 rounded-pill" style="font-size:0.7rem;">Full Stack Developer</span>
                 </div>
                 
+                <!-- Srf aap k card par bright neon line aur social links hain -->
                 <div class="glowing-separator"></div>
                 
                 <div class="d-flex justify-content-center gap-2">
@@ -300,40 +308,28 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3">
-                    <i class="fa-solid fa-laptop-code fa-xl"></i>
+        <!-- Member 2: Esha Jamil (Clean - No Links/No Line) -->
+        <div class="col-md-4">
+            <div class="bright-card p-3 text-center h-100 border-bottom border-3 border-danger">
+                <span class="p-2.5 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-2">
+                    <i class="fa-solid fa-laptop-code fa-lg"></i>
                 </span>
                 <h5 class="mb-1">Esha Jamil</h5>
                 <div class="d-flex justify-content-center gap-1 mb-2">
-                    <span class="badge bg-danger text-white px-3 py-1 rounded-pill" style="font-size:0.75rem;">UI/UX Interface Designer</span>
-                </div>
-                
-                <div class="glowing-separator"></div>
-                
-                <div class="d-flex justify-content-center gap-2">
-                    <a href="#" class="social-btn gh"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="social-btn li"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <span class="badge bg-danger text-white px-2.5 py-1 rounded-pill" style="font-size:0.7rem;">UI/UX Interface Designer</span>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3">
-                    <i class="fa-solid fa-server fa-xl"></i>
+        <!-- Member 3: Muhammad Ukasha Khalid (Clean - No Links/No Line) -->
+        <div class="col-md-4">
+            <div class="bright-card p-3 text-center h-100 border-bottom border-3 border-danger">
+                <span class="p-2.5 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-2">
+                    <i class="fa-solid fa-server fa-lg"></i>
                 </span>
                 <h5 class="mb-1">Muhammad Ukasha Khalid</h5>
                 <div class="d-flex justify-content-center gap-1 mb-2">
-                    <span class="badge bg-danger text-white px-3 py-1 rounded-pill" style="font-size:0.75rem;">Database Specialist</span>
-                </div>
-                
-                <div class="glowing-separator"></div>
-                
-                <div class="d-flex justify-content-center gap-2">
-                    <a href="#" class="social-btn gh"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="social-btn li"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <span class="badge bg-danger text-white px-2.5 py-1 rounded-pill" style="font-size:0.7rem;">Database Specialist</span>
                 </div>
             </div>
         </div>
