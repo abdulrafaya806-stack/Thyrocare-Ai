@@ -36,15 +36,19 @@
     }
 
     /* 🏛️ PREMIUM NAVBAR HEADER & MOBILE TOGGLER FIX */
-    header, .navbar, [style*="background-color"] {
+    header,
+    .navbar,
+    [style*="background-color"] {
         background: rgba(17, 24, 39, 0.95) !important;
         backdrop-filter: blur(10px);
         box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6) !important;
         border-bottom: 3px solid #dc2626 !important;
         padding: 0.8rem 1rem !important;
     }
-    
-    .navbar-brand, .navbar-brand strong, [class*="brand"] {
+
+    .navbar-brand,
+    .navbar-brand strong,
+    [class*="brand"] {
         font-weight: 900 !important;
         font-size: 1.6rem !important;
         letter-spacing: 1px !important;
@@ -53,8 +57,14 @@
         text-shadow: 0 2px 4px rgba(220, 38, 38, 0.6) !important;
     }
 
-    .nav-link { color: #d1d5db !important; font-weight: 600 !important; }
-    .nav-link:hover { color: #f87171 !important; }
+    .nav-link {
+        color: #d1d5db !important;
+        font-weight: 600 !important;
+    }
+
+    .nav-link:hover {
+        color: #f87171 !important;
+    }
 
     /* 📱 Mobile Sidebar Button Visibility Fix */
     .navbar-toggler {
@@ -64,7 +74,7 @@
         outline: none !important;
         box-shadow: 0 0 10px rgba(220, 38, 38, 0.4) !important;
     }
-    
+
     .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
     }
@@ -73,14 +83,14 @@
     .portal-main-hero {
         padding: 7rem 1rem 4rem 1rem;
     }
-    
+
     .portal-tagline {
         font-size: 1rem;
         letter-spacing: 3px;
         text-transform: uppercase;
         color: #ff8a8a;
         font-weight: 800;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
     }
 
     .portal-heading {
@@ -89,29 +99,45 @@
         line-height: 1.2;
         letter-spacing: -1px;
         color: #ffffff;
-        text-shadow: 0 4px 20px rgba(0,0,0,0.95), 0 0 40px rgba(0,0,0,0.7);
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 0, 0, 0.7);
     }
 
     @media (max-width: 768px) {
-        .portal-heading { font-size: 2.3rem !important; }
-        .portal-main-hero { padding: 4rem 1rem 2rem 1rem; }
+        .portal-heading {
+            font-size: 2.3rem !important;
+        }
+
+        .portal-main-hero {
+            padding: 4rem 1rem 2rem 1rem;
+        }
     }
 
     .portal-lead-text {
         color: #e2e8f0 !important;
         font-weight: 500;
-        text-shadow: 0 2px 12px rgba(0,0,0,0.95);
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
     }
 
     .btn-portal-primary {
-        background: #dc2626; color: #ffffff; font-weight: 600; padding: 0.9rem 2.5rem; border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(220, 38, 38, 0.5); transition: all 0.2s ease; border: none;
+        background: #dc2626;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 0.9rem 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(220, 38, 38, 0.5);
+        transition: all 0.2s ease;
+        border: none;
     }
-    .btn-portal-primary:hover { background: #b91c1c; color: #ffffff; transform: translateY(-2px); }
+
+    .btn-portal-primary:hover {
+        background: #b91c1c;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
 
     /* 👤 CASE STUDY PANEL */
     .case-study-footer-card {
-        background: rgba(11, 17, 32, 0.88); 
+        background: rgba(11, 17, 32, 0.88);
         border: 2px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         backdrop-filter: blur(20px);
@@ -160,6 +186,7 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
+
     .premium-section-subtitle {
         color: #f87171;
         font-weight: 700;
@@ -167,6 +194,7 @@
         text-transform: uppercase;
         font-size: 0.85rem;
     }
+
     .glass-card {
         background: rgba(15, 23, 42, 0.7);
         border: 1px solid rgba(255, 255, 255, 0.08);
@@ -177,31 +205,58 @@
         overflow: hidden;
         z-index: 1;
     }
+
     .glass-card:hover {
         transform: translateY(-8px);
         border-color: rgba(220, 38, 38, 0.4);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(220, 38, 38, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(220, 38, 38, 0.15);
     }
+
     .glass-card::before {
-        content: ''; position: absolute; top: 0; left: -100%;
-        width: 50%; height: 100%;
-        background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
-        transform: skewX(-25deg); transition: all 0.7s; z-index: -1;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03), transparent);
+        transform: skewX(-25deg);
+        transition: all 0.7s;
+        z-index: -1;
     }
-    .glass-card:hover::before { left: 200%; }
+
+    .glass-card:hover::before {
+        left: 200%;
+    }
+
     .service-icon-box {
-        width: 65px; height: 65px; border-radius: 14px;
-        background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(0,0,0,0));
-        display: inline-flex; align-items: center; justify-content: center;
-        font-size: 1.8rem; color: #f87171; margin-bottom: 1.2rem;
+        width: 65px;
+        height: 65px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(0, 0, 0, 0));
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: #f87171;
+        margin-bottom: 1.2rem;
         border: 1px solid rgba(220, 38, 38, 0.3);
     }
+
     .testimonial-avatar {
-        width: 55px; height: 55px; border-radius: 50%;
-        object-fit: cover; border: 2px solid #dc2626;
-        padding: 2px; background: #fff;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #dc2626;
+        padding: 2px;
+        background: #fff;
     }
-    .section-spacing { margin-top: 6rem; margin-bottom: 4rem; }
+
+    .section-spacing {
+        margin-top: 6rem;
+        margin-bottom: 4rem;
+    }
 </style>
 
 <!-- 🎥 HTML5 VIDEO OBJECT LAYERS -->
@@ -223,11 +278,14 @@
             Thyroid Disease Predictive Engine
         </h1>
         <p class="lead portal-lead-text mb-5 col-lg-8 mx-auto">
-            An advanced machine learning framework specialized in screening clinical thyroid indicators, offering deployment-ready diagnostics with optimized node analysis algorithms.
+            An advanced machine learning framework specialized in screening clinical thyroid indicators, offering
+            deployment-ready diagnostics with optimized node analysis algorithms.
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
-            <a href="/predict" class="btn btn-portal-primary btn-lg"><i class="fa-solid fa-microscope me-2"></i>Execute Data Screening</a>
-            <a href="/risk" class="btn btn-outline-light btn-lg px-4" style="border-radius: 12px; border-color: rgba(255,255,255,0.35);">Symptom Evaluation</a>
+            <a href="/predict" class="btn btn-portal-primary btn-lg"><i class="fa-solid fa-microscope me-2"></i>Execute
+                Data Screening</a>
+            <a href="/risk" class="btn btn-outline-light btn-lg px-4"
+                style="border-radius: 12px; border-color: rgba(255,255,255,0.35);">Symptom Evaluation</a>
         </div>
     </div>
 </div>
@@ -238,33 +296,44 @@
         <div class="row g-0 align-items-center">
             <div class="col-md-4 col-lg-3">
                 <div class="case-study-img-wrapper">
-                    <img src="/static/maryum_transparent.png" onerror="this.onerror=null; this.src='https://placehold.co/400x500?text=Clinical+Profile';" alt="Maryam Nawaz Case Study Profile" class="case-study-thumb">
+                    <img src="/static/maryum_transparent.png"
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x500?text=Clinical+Profile';"
+                        alt="Maryam Nawaz Case Study Profile" class="case-study-thumb">
                 </div>
             </div>
             <div class="col-md-8 col-lg-9 p-4 p-lg-5">
                 <div class="case-meta-title mb-1">Clinical Reference Verification</div>
                 <h3 class="text-white fw-bold mb-3">Patient Case Study: Active Node Abnormality</h3>
                 <p class="case-study-text mb-4">
-                    This reference case profile provides empirical clinical screening data tracking historical records from <strong class="text-white">2021 to January 2023</strong>. The evaluation marks a phase of Chronic Thyroid Abnormality (Nodular Growth) that successfully transitioned to post-surgical management following clinical termination via operative treatment in Geneva.
+                    This reference case profile provides empirical clinical screening data tracking historical records
+                    from <strong class="text-white">2021 to January 2023</strong>. The evaluation marks a phase of
+                    Chronic Thyroid Abnormality (Nodular Growth) that successfully transitioned to post-surgical
+                    management following clinical termination via operative treatment in Geneva.
                 </p>
-                
+
                 <!-- Badge Details Row -->
                 <div class="row g-3">
                     <div class="col-sm-6 col-lg-4">
-                        <div class="p-2 px-3 rounded-3" style="background: rgba(220, 38, 38, 0.25); border: 1px solid rgba(220, 38, 38, 0.4);">
-                            <small class="text-danger d-block fw-bold" style="font-size: 0.75rem;">DISEASE CLASSIFICATION</small>
+                        <div class="p-2 px-3 rounded-3"
+                            style="background: rgba(220, 38, 38, 0.25); border: 1px solid rgba(220, 38, 38, 0.4);">
+                            <small class="text-danger d-block fw-bold" style="font-size: 0.75rem;">DISEASE
+                                CLASSIFICATION</small>
                             <span class="text-white small fw-bold">Thyroid Nodular Expansion</span>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-4">
-                        <div class="p-2 px-3 rounded-3" style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.4);">
-                            <small class="text-warning d-block fw-bold" style="font-size: 0.75rem;">SEVERITY LEVEL</small>
+                        <div class="p-2 px-3 rounded-3"
+                            style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.4);">
+                            <small class="text-warning d-block fw-bold" style="font-size: 0.75rem;">SEVERITY
+                                LEVEL</small>
                             <span class="text-warning small fw-bold">Acute High-Risk Stage</span>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-4">
-                        <div class="p-2 px-3 rounded-3" style="background: rgba(14, 165, 233, 0.25); border: 1px solid rgba(14, 165, 233, 0.4);">
-                            <small class="text-info d-block fw-bold" style="font-size: 0.75rem;">MANAGEMENT STATUS</small>
+                        <div class="p-2 px-3 rounded-3"
+                            style="background: rgba(14, 165, 233, 0.25); border: 1px solid rgba(14, 165, 233, 0.4);">
+                            <small class="text-info d-block fw-bold" style="font-size: 0.75rem;">MANAGEMENT
+                                STATUS</small>
                             <span class="text-info small fw-bold">Post-Surgical Control</span>
                         </div>
                     </div>
@@ -280,27 +349,35 @@
         <div class="col-lg-6">
             <div class="position-relative">
                 <div class="glass-card p-1" style="border-radius: 24px;">
-                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medical Technology" class="img-fluid" style="border-radius: 20px; opacity: 0.85;">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Medical Technology" class="img-fluid" style="border-radius: 20px; opacity: 0.85;">
                 </div>
                 <!-- Floating Badge -->
-                <div class="position-absolute bottom-0 end-0 translate-middle-y me-n4 glass-card p-3 px-4 text-center border-danger border-start border-3" style="min-width: 180px;">
+                <div class="position-absolute bottom-0 end-0 translate-middle-y me-n4 glass-card p-3 px-4 text-center border-danger border-start border-3"
+                    style="min-width: 180px;">
                     <h3 class="text-white fw-bold mb-0">95<span class="text-danger">%</span></h3>
-                    <small class="text-muted fw-bold">ACCURACY RATE</small>
+                    <small class="text-white fw-bold">ACCURACY RATE</small>
                 </div>
             </div>
         </div>
         <div class="col-lg-6 px-lg-5">
             <span class="premium-section-subtitle">Core Intelligence</span>
             <h2 class="premium-section-title mb-4">About <span class="text-danger">ThyroCare</span></h2>
-            <p class="text-secondary lead fs-6 mb-4" style="line-height: 1.8;">
-                ThyroCare is a state-of-the-art predictive clinical tool engineered to assist healthcare professionals in identifying thyroid anomalies. By leveraging advanced machine learning algorithms, our platform processes critical biomarker data to provide instant, highly accurate diagnostic insights.
+            <p class="text-white lead fs-6 mb-4" style="line-height: 1.8;">
+                ThyroCare is a state-of-the-art predictive clinical tool engineered to assist healthcare professionals
+                in identifying thyroid anomalies. By leveraging advanced machine learning algorithms, our platform
+                processes critical biomarker data to provide instant, highly accurate diagnostic insights.
             </p>
             <ul class="list-unstyled mb-4">
-                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Data-driven risk stratification</li>
-                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Real-time predictive analytics</li>
-                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Secure patient registry and logs</li>
+                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Data-driven risk
+                    stratification</li>
+                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Real-time
+                    predictive analytics</li>
+                <li class="mb-3 text-light"><i class="fa-solid fa-check-circle text-danger me-3"></i>Secure patient
+                    registry and logs</li>
             </ul>
-            <a href="/predict" class="btn btn-portal-primary px-4 py-2 mt-2">Start Screening <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="/predict" class="btn btn-portal-primary px-4 py-2 mt-2">Start Screening <i
+                    class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </div>
@@ -316,21 +393,24 @@
             <div class="glass-card p-4 p-lg-5 h-100 text-center border-top border-3 border-danger">
                 <div class="service-icon-box"><i class="fa-solid fa-brain"></i></div>
                 <h4 class="text-white fw-bold mb-3">AI Diagnostics</h4>
-                <p class="text-secondary small mb-0">Input patient lab parameters like TSH, T3, and TT4 to receive instant, AI-generated clinical predictions regarding thyroid health.</p>
+                <p class="text-secondary small mb-0">Input patient lab parameters like TSH, T3, and TT4 to receive
+                    instant, AI-generated clinical predictions regarding thyroid health.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="glass-card p-4 p-lg-5 h-100 text-center border-top border-3 border-danger">
                 <div class="service-icon-box"><i class="fa-solid fa-stethoscope"></i></div>
                 <h4 class="text-white fw-bold mb-3">Symptom Checker</h4>
-                <p class="text-secondary small mb-0">Evaluate preliminary health risks based on physical and psychological symptoms before requiring comprehensive lab tests.</p>
+                <p class="text-secondary small mb-0">Evaluate preliminary health risks based on physical and
+                    psychological symptoms before requiring comprehensive lab tests.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="glass-card p-4 p-lg-5 h-100 text-center border-top border-3 border-danger">
                 <div class="service-icon-box"><i class="fa-solid fa-database"></i></div>
                 <h4 class="text-white fw-bold mb-3">Secure Registry</h4>
-                <p class="text-secondary small mb-0">Maintain a comprehensive log of all diagnostic evaluations in our secure database for future clinical reference and tracking.</p>
+                <p class="text-secondary small mb-0">Maintain a comprehensive log of all diagnostic evaluations in our
+                    secure database for future clinical reference and tracking.</p>
             </div>
         </div>
     </div>
@@ -346,31 +426,41 @@
         <div class="col-md-6">
             <div class="glass-card p-4 h-100">
                 <div class="d-flex align-items-center mb-4">
-                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Doctor" class="testimonial-avatar me-3">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                        alt="Doctor" class="testimonial-avatar me-3">
                     <div>
                         <h5 class="text-white fw-bold mb-0">Dr. Sarah Jenkins</h5>
                         <small class="text-danger fw-bold">Endocrinologist</small>
                     </div>
                     <div class="ms-auto text-warning">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
                     </div>
                 </div>
-                <p class="text-secondary fst-italic mb-0">"ThyroCare has significantly streamlined our preliminary screening process. The ML engine's accuracy in identifying borderline cases before they escalate is truly remarkable. A must-have tool for modern clinics."</p>
+                <p class="text-secondary fst-italic mb-0">"ThyroCare has significantly streamlined our preliminary
+                    screening process. The ML engine's accuracy in identifying borderline cases before they escalate is
+                    truly remarkable. A must-have tool for modern clinics."</p>
             </div>
         </div>
         <div class="col-md-6">
             <div class="glass-card p-4 h-100">
                 <div class="d-flex align-items-center mb-4">
-                    <img src="https://images.unsplash.com/photo-1594824432258-fba826e7b165?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Doctor" class="testimonial-avatar me-3">
+                    <img src="https://images.unsplash.com/photo-1594824432258-fba826e7b165?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                        alt="Doctor" class="testimonial-avatar me-3">
                     <div>
                         <h5 class="text-white fw-bold mb-0">Dr. Marcus Vance</h5>
                         <small class="text-danger fw-bold">Head of Diagnostics</small>
                     </div>
                     <div class="ms-auto text-warning">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
                     </div>
                 </div>
-                <p class="text-secondary fst-italic mb-0">"The seamless integration of symptom evaluation and lab data prediction makes this platform a powerhouse. It doesn't replace doctors, but it acts as a phenomenal second pair of eyes."</p>
+                <p class="text-secondary fst-italic mb-0">"The seamless integration of symptom evaluation and lab data
+                    prediction makes this platform a powerhouse. It doesn't replace doctors, but it acts as a phenomenal
+                    second pair of eyes."</p>
             </div>
         </div>
     </div>

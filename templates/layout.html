@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThyroCare | Advanced Smart Screening Hub</title>
-    
+
     <!-- Favicon Icon (Aap apni image /static/ folder mein favicon.png ke naam se rakh dena) -->
     <link rel="icon" href="/static/favicon.png" type="image/png">
 
     <!-- Premium Google Fonts: Poppins for Rich Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Bootstrap 5 & FontAwesome Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         /* High Contrast Bright Premium Design */
-        body { 
-            background-color: #f1f5f9; 
+        body {
+            background-color: #f1f5f9;
             font-family: 'Poppins', sans-serif;
             color: #1e293b;
             overflow-x: hidden;
         }
-        
+
         /* Smooth Crimson Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 10px; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #dc2626;
+            border-radius: 10px;
+        }
 
         /* Solid Crisp White Navbar with Deep Shadow */
         .custom-nav {
             background: #ffffff !important;
             border-bottom: 3px solid #dc2626;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         }
+
         .navbar-brand {
             font-weight: 700;
             color: #0f172a !important;
             letter-spacing: 0.5px;
         }
+
         .brand-accent {
             color: #dc2626;
         }
+
         .nav-link {
             font-weight: 600;
             color: #475569 !important;
             font-size: 0.95rem;
             transition: all 0.2s ease;
         }
-        .nav-link:hover, .nav-link.active {
+
+        .nav-link:hover,
+        .nav-link.active {
             color: #dc2626 !important;
         }
 
@@ -56,16 +72,17 @@
             background: #ffffff;
             border: none;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             padding: 2.5rem;
         }
-        
+
         footer {
             background: #0f172a;
             border-top: 4px solid #dc2626;
         }
     </style>
 </head>
+
 <body>
 
     <!-- HIGH-CONTRAST CLEAN NAVBAR -->
@@ -80,10 +97,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav ms-auto gap-2">
                     <a class="nav-link px-3" href="/"><i class="fa-solid fa-house-medical me-1"></i> Home Overview</a>
-                    <a class="nav-link px-3" href="/risk"><i class="fa-solid fa-clipboard-check me-1"></i> Symptom Risk</a>
-                    <a class="nav-link px-3" href="/predict"><i class="fa-solid fa-microscope me-1"></i> AI Diagnostics</a>
-                    <a class="nav-link px-3" href="/history"><i class="fa-solid fa-clock-rotate-left me-1"></i> Registry Logs</a>
-                    <a class="nav-link px-3" href="/analytics"><i class="fa-solid fa-chart-bar me-1"></i> Performance</a>
+                    <a class="nav-link px-3" href="/risk"><i class="fa-solid fa-clipboard-check me-1"></i> Symptom
+                        Risk</a>
+                    <a class="nav-link px-3" href="/predict"><i class="fa-solid fa-microscope me-1"></i> AI
+                        Diagnostics</a>
+                    <a class="nav-link px-3" href="/history"><i class="fa-solid fa-clock-rotate-left me-1"></i> Registry
+                        Logs</a>
+                    <a class="nav-link px-3" href="/analytics"><i class="fa-solid fa-chart-bar me-1"></i>
+                        Performance</a>
                 </div>
             </div>
         </div>
@@ -98,9 +119,11 @@
     <!-- CLEAN HIGH-END FOOTER -->
     <footer class="text-white text-center py-4 mt-5">
         <p class="mb-1 small tracking-wider text-uppercase text-light">ThyroCare Integrated Clinical Systems</p>
-        <p class="mb-0 text-muted" style="font-size: 0.8rem;">&copy; 2026 Academic Research Project Collaboration. All Rights Reserved.</p>
+        <p class="mb-0 text-white" style="font-size: 0.8rem;">&copy; 2026 Academic Research Project Collaboration. All
+            Rights Reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

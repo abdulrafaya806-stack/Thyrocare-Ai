@@ -1,6 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import database
 import random
+import os
+import re
+import pdfplumber
+import pytesseract
+from PIL import Image
+from werkzeug.utils import secure_filename
+
+# Windows Tesseract Path Setup
+# Agar user ne Tesseract install kiya hai toh default path C:\Program Files\Tesseract-OCR\tesseract.exe hota hai.
+tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+if os.path.exists(tesseract_path):
+    pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
 app = Flask(__name__)
 
@@ -69,7 +81,55 @@ def predict():
         
     return render_template('predict.html')
 
-# 4. HISTORY LOGS ROUTE
+# 4. REPORT EXTRACTION (OCR/PDF) ROUTE
+@app.route('/extract_report', methods=['POST'])
+def extract_report():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file uploaded'}), 400
+    
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+        
+    extracted_text = ""
+    try:
+        if file.filename.lower().endswith('.pdf'):
+            with pdfplumber.open(file) as pdf:
+                for page in pdf.pages:
+                    text = page.extract_text()
+                    if text:
+                        extracted_text += text + "\n"
+        elif file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            image = Image.open(file)
+            extracted_text = pytesseract.image_to_string(image)
+        else:
+            return jsonify({'error': 'Unsupported format. Use PDF, PNG, or JPEG.'}), 400
+            
+        # Regex parsing for clinical parameters
+        data = {}
+        
+        def find_value(pattern, text):
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                try:
+                    return float(match.group(1))
+                except:
+                    pass
+            return ""
+
+        # Searching for patterns like "TSH: 4.5" or "T3 level 1.2"
+        data['tsh'] = find_value(r'TSH[^\d]*?(\d+\.\d+|\d+)', extracted_text)
+        data['t3'] = find_value(r'\bT3[^\d]*?(\d+\.\d+|\d+)', extracted_text)
+        data['tt4'] = find_value(r'(?:TT4|Total T4)[^\d]*?(\d+\.\d+|\d+)', extracted_text)
+        data['t4u'] = find_value(r'T4U[^\d]*?(\d+\.\d+|\d+)', extracted_text)
+        data['fti'] = find_value(r'FTI[^\d]*?(\d+\.\d+|\d+)', extracted_text)
+        
+        return jsonify({'success': True, 'data': data})
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# 5. HISTORY LOGS ROUTE
 @app.route('/history')
 def history():
     try:

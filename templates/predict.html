@@ -6,6 +6,27 @@
         <p class="text-muted small">Input authentic laboratory assay quantities for diagnostic predictive mapping</p>
     </div>
 
+    <!-- 📄 REPORT AUTO-FILL SECTION -->
+    <div class="mb-5 p-4 rounded-4" style="background: rgba(220, 38, 38, 0.05); border: 1px dashed rgba(220, 38, 38, 0.4);">
+        <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-file-medical text-danger me-2"></i>Smart Report Scan (Auto-fill)</h5>
+        <p class="text-muted small mb-3">Upload your lab report (PDF, PNG, JPG) to automatically extract TSH, T3, and T4 values using OCR AI.</p>
+        
+        <div class="input-group mb-2">
+            <input type="file" class="form-control" id="reportFile" accept=".pdf,.png,.jpg,.jpeg">
+            <button class="btn btn-danger px-4 fw-bold" type="button" id="scanBtn" onclick="scanReport()">
+                <i class="fa-solid fa-expand me-2"></i>Scan & Auto-Fill
+            </button>
+        </div>
+        
+        <!-- Loading & Status Messages -->
+        <div id="scanStatus" class="small fw-bold mt-2 d-none">
+            <span class="text-primary"><i class="fa-solid fa-spinner fa-spin me-2"></i>Scanning report... Please wait.</span>
+        </div>
+        <div id="scanError" class="small fw-bold text-danger mt-2 d-none"></div>
+        <div id="scanSuccess" class="small fw-bold text-success mt-2 d-none"></div>
+    </div>
+
+    <!-- STANDARD INPUT FORM -->
     <form method="POST" action="/predict">
         <div class="row g-3">
             <div class="col-md-6"><label class="form-label fw-semibold">Patient Age</label><input type="number" name="age" class="form-control" required min="1" max="120" value="45"></div>
@@ -19,4 +40,73 @@
         <button type="submit" class="btn btn-dark btn-lg w-100 mt-4 fw-bold shadow-sm">Predict Disease Using Random Forest Model</button>
     </form>
 </div>
+
+<!-- SCRIPTS FOR OCR AUTO-FILL -->
+<script>
+async function scanReport() {
+    const fileInput = document.getElementById('reportFile');
+    const scanStatus = document.getElementById('scanStatus');
+    const scanError = document.getElementById('scanError');
+    const scanSuccess = document.getElementById('scanSuccess');
+    const scanBtn = document.getElementById('scanBtn');
+    
+    scanError.classList.add('d-none');
+    scanSuccess.classList.add('d-none');
+    
+    if (!fileInput.files.length) {
+        scanError.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Please select a file first.";
+        scanError.classList.remove('d-none');
+        return;
+    }
+    
+    scanStatus.classList.remove('d-none');
+    scanBtn.disabled = true;
+    
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    
+    try {
+        const response = await fetch('/extract_report', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        scanStatus.classList.add('d-none');
+        scanBtn.disabled = false;
+        
+        if (result.success) {
+            const data = result.data;
+            let fieldsFilled = 0;
+            
+            if (data.tsh !== "") { document.querySelector('input[name="tsh"]').value = data.tsh; fieldsFilled++; }
+            if (data.t3 !== "") { document.querySelector('input[name="t3"]').value = data.t3; fieldsFilled++; }
+            if (data.tt4 !== "") { document.querySelector('input[name="tt4"]').value = data.tt4; fieldsFilled++; }
+            if (data.t4u !== "") { document.querySelector('input[name="t4u"]').value = data.t4u; fieldsFilled++; }
+            if (data.fti !== "") { document.querySelector('input[name="fti"]').value = data.fti; fieldsFilled++; }
+            
+            if (fieldsFilled > 0) {
+                scanSuccess.innerHTML = `<i class="fa-solid fa-check-circle me-1"></i> Successfully extracted ${fieldsFilled} parameters. Please verify them.`;
+                scanSuccess.classList.remove('d-none');
+            } else {
+                scanError.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> No clinical values could be clearly read from this file.";
+                scanError.classList.remove('d-none');
+            }
+        } else {
+            // Tesseract error specifically for Windows users
+            if (result.error && result.error.includes("tesseract is not installed")) {
+                scanError.innerHTML = "❌ <b>Tesseract-OCR is missing!</b> Since you uploaded an Image, Windows needs Tesseract installed to read text. Please install Tesseract or upload a PDF instead.";
+            } else {
+                scanError.innerHTML = "❌ " + (result.error || "Failed to process document.");
+            }
+            scanError.classList.remove('d-none');
+        }
+    } catch (err) {
+        scanStatus.classList.add('d-none');
+        scanBtn.disabled = false;
+        scanError.innerHTML = "❌ Server connection error while extracting data.";
+        scanError.classList.remove('d-none');
+    }
+}
+</script>
 {% endblock %}
