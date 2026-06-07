@@ -18,7 +18,7 @@
         object-fit: cover;
     }
 
-    /* 🌌 DYNAMIC OVERLAY: Center clear rakha hai taake video ka text/anatomy part sharp dikhe */
+    /* 🌌 DYNAMIC OVERLAY */
     .video-overlay {
         position: fixed;
         top: 0;
@@ -32,10 +32,10 @@
     /* Global Body Settings */
     body {
         color: #f8fafc !important;
-        background-color: #0b1120 !important; /* Fallback color */
+        background-color: #0b1120 !important;
     }
 
-    /* 🏛️ PREMIUM NAVBAR HEADER */
+    /* 🏛️ PREMIUM NAVBAR HEADER & MOBILE TOGGLER FIX */
     header, .navbar, [style*="background-color"] {
         background: rgba(17, 24, 39, 0.95) !important;
         backdrop-filter: blur(10px);
@@ -56,7 +56,21 @@
     .nav-link { color: #d1d5db !important; font-weight: 600 !important; }
     .nav-link:hover { color: #f87171 !important; }
 
-    /* 📺 Text Visibility & Shadow Enhancement */
+    /* 📱 CRITICAL FIX: Making Mobile Sidebar Button Bright White & Red Bordered */
+    .navbar-toggler {
+        border: 2px solid #dc2626 !important;
+        background-color: rgba(220, 38, 38, 0.15) !important;
+        padding: 6px 10px !important;
+        outline: none !important;
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.4) !important;
+    }
+    
+    /* Dynamic White Hamburger Lines Filter */
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+    }
+
+    /* 📺 Text Visibility & Hero Section */
     .portal-main-hero {
         padding: 7rem 1rem 4rem 1rem;
     }
@@ -77,6 +91,11 @@
         letter-spacing: -1px;
         color: #ffffff;
         text-shadow: 0 4px 20px rgba(0,0,0,0.95), 0 0 40px rgba(0,0,0,0.7);
+    }
+
+    @media (max-width: 768px) {
+        .portal-heading { font-size: 2.3rem !important; }
+        .portal-main-hero { padding: 4rem 1rem 2rem 1rem; }
     }
 
     .portal-lead-text {
@@ -118,7 +137,6 @@
         object-fit: cover;
         object-position: top center;
         border-right: 1px solid rgba(255, 255, 255, 0.08);
-        transform: translateY(-25px) scale(1.05); /* Image ko box mein thora ooper shift karne ke liye */
     }
 
     .case-meta-title {
@@ -135,17 +153,38 @@
         line-height: 1.6;
     }
 
-    /* Dev Board Styling */
+    /* 🛠️ INDIVIDUAL ENGINEER PORTFOLIO CARD */
     .bright-card {
-        background: rgba(17, 24, 39, 0.85) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px;
-        backdrop-filter: blur(12px);
+        background: rgba(17, 24, 39, 0.9) !important;
+        border: 2px solid rgba(220, 38, 38, 0.3) !important;
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, border-color 0.3s ease;
     }
-    .bright-card h5 { color: #ffffff !important; }
+    .bright-card:hover {
+        transform: translateY(-5px);
+        border-color: #dc2626 !important;
+    }
+    .bright-card h4 { color: #ffffff !important; font-weight: 800; letter-spacing: 0.5px; }
+    
+    .social-btn {
+        width: 45px;
+        height: 45px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    .social-btn.gh:hover { background: #24292e; color: #ffffff; box-shadow: 0 0 15px rgba(36,41,46,0.6); }
+    .social-btn.li:hover { background: #0077b5; color: #ffffff; box-shadow: 0 0 15px rgba(0,119,181,0.6); }
 </style>
 
-<!-- 🎥 HTML5 VIDEO OBJECT LAYERS -->
 <div class="bg-video-container">
     <video class="bg-video-content" autoplay loop muted playsinline>
         <source src="/static/anatomy.mp4" type="video/mp4">
@@ -154,7 +193,6 @@
 </div>
 <div class="video-overlay"></div>
 
-<!-- 🏛️ MAIN HERO CORE -->
 <div class="portal-main-hero text-center">
     <div class="container">
         <div class="portal-tagline mb-3">
@@ -172,7 +210,7 @@
         </div>
     </div>
 </div>
-<!-- 👤 PORTRAIT FRAME & CASE STUDY PANEL -->
+
 <div class="container my-5">
     <div class="case-study-footer-card">
         <div class="row g-0 align-items-center">
@@ -188,7 +226,6 @@
                     This reference case profile provides empirical clinical screening data tracking historical records from <strong class="text-white">2021 to January 2023</strong>. The evaluation marks a phase of Chronic Thyroid Abnormality (Nodular Growth) that successfully transitioned to post-surgical management following clinical termination via operative treatment in Geneva.
                 </p>
                 
-                <!-- Badge Details Row -->
                 <div class="row g-3">
                     <div class="col-sm-6 col-lg-4">
                         <div class="p-2 px-3 rounded-3" style="background: rgba(220, 38, 38, 0.25); border: 1px solid rgba(220, 38, 38, 0.4);">
@@ -214,32 +251,33 @@
     </div>
 </div>
 
-<!-- DEVELOPMENT ENGINEERS BOARD -->
-<div class="container my-5 pt-4">
+<div class="container my-5 pt-2">
     <div class="text-center mb-4">
-        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-people-group text-danger me-2"></i>Development Engineers Board</h3>
-        <p class="text-muted small">System Architecture Design & Machine Learning Processing Core</p>
+        <h3 class="fw-bold text-white mb-1"><i class="fa-solid fa-user-gear text-danger me-2"></i>Lead System Architect</h3>
+        <p class="text-muted small">Core Processing Architecture & AI Model Deployments</p>
     </div>
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-4">
-            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3"><i class="fa-solid fa-user-shield fa-2x"></i></span>
-                <h5 class="fw-bold mb-1">Abdul Rafay Haroon</h5>
-                <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">Lead ML Architect</span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3"><i class="fa-solid fa-laptop-code fa-2x"></i></span>
-                <h5 class="fw-bold mb-1">Esha Jamil</h5>
-                <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">UI/UX Interface Designer</span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="bright-card p-4 text-center h-100 border-bottom border-3 border-danger">
-                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3"><i class="fa-solid fa-server fa-2x"></i></span>
-                <h5 class="fw-bold mb-1">Muhammad Ukasha Khalid</h5>
-                <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">Full-Stack Database Specialist</span>
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="bright-card p-4 text-center border-bottom border-3 border-danger">
+                <span class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-block mb-3" style="box-shadow: 0 0 15px rgba(220,38,38,0.2);">
+                    <i class="fa-solid fa-user-shield fa-2x"></i>
+                </span>
+                <h4 class="mb-1">Abdul Rafay Haroon</h4>
+                <div class="d-flex justify-content-center gap-2 mb-3 flex-wrap">
+                    <span class="badge bg-danger text-white px-3 py-1 rounded-pill small">AI/ML Engineer</span>
+                    <span class="badge bg-secondary text-white px-3 py-1 rounded-pill small">Full Stack Developer</span>
+                </div>
+                
+                <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 1rem 0;">
+                
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://github.com/abdulrafaya806-stack" target="_blank" class="social-btn gh" title="GitHub Profile">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abdul-rafay-haroon-79a7a628b/" target="_blank" class="social-btn li" title="LinkedIn Profile">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
