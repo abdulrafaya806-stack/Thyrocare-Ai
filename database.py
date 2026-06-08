@@ -1,7 +1,25 @@
 import sqlite3
+import os
+import shutil
+
+DB_NAME = 'thyroid_records.db'
 
 def get_db_connection():
-    conn = sqlite3.connect('thyroid_records.db')
+    # Agar code Vercel (Linux) par chal raha hai toh /tmp folder use karega
+    if os.environ.get('VERCEL') or os.name != 'nt':
+        db_path = os.path.join('/tmp', DB_NAME)
+        
+        # Agar /tmp ke andar file pehle se majood nahi hai toh project directory se copy kar lega
+        if not os.path.exists(db_path) and os.path.exists(DB_NAME):
+            try:
+                shutil.copy(DB_NAME, db_path)
+            except Exception as e:
+                print(f"Database copy warning: {e}")
+    else:
+        # Local system (Windows) par wahi regular path chalega
+        db_path = DB_NAME
+
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
 
